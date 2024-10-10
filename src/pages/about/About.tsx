@@ -1,4 +1,3 @@
-import Logo from "../../logo-icon.png";
 import Github from "../../github-icon.png"
 import Pessoa from "../../pessoa.jpg"
 
@@ -8,24 +7,7 @@ export default function About() {
   return (
     <>
         <img src={Pessoa} alt="pessoa-icon" className="pessoa-icon"/>
-      <div className="header">
-        <img src={Logo} alt="" className="logo-icon" />
-
-        <ul className="links-ul">
-          <li>
-            <a href="/home">Home</a>
-          </li>
-          <li>
-            <a href="/sobre">About</a>
-          </li>
-          <li>
-            <a href="/inventory">Inventory</a>
-          </li>
-          <li>
-            <a href="/config">Config</a>
-          </li>
-        </ul>
-      </div>
+      
 
       <div className="container-about">
         <h1>Sobre os criadores do projeto!</h1>
