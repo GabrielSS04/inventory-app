@@ -1,0 +1,33 @@
+.container-home{
+    display: flex;
+    flex-direction: column;
+
+    gap: 50px;
+    padding: 50px;
+    border-radius: 20px;
+    color: black;
+
+    width: 800px;
+    margin-top: 150px;
+    text-align: center;
+
+    background-color: white;
+}
+
+.container-home h1{
+    font-size: 24pt;
+    font-weight: bolder;
+}
+.content-home{
+    width: 600px;
+    margin: auto;
+}
+
+.bg-image{
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    clip: auto;
+    width: 100vw;
+}

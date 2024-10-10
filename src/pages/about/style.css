@@ -1,0 +1,60 @@
+.container-about{
+    padding: 20px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+
+    text-align: center;
+    width: 800px;
+}
+
+.container-about h1{
+    font-size: 24pt;
+    font-weight: bolder;
+}
+
+.contactme{
+    background-color: lightgray;
+    width: 600px;
+    margin: auto;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.redes{
+    padding: 10px;
+    margin: 10px;
+    display: flex;
+    gap: 30px;
+
+    justify-content: center;
+    align-items: center;
+}
+
+.card{
+    width: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+
+    background-color: white;
+    border-radius: 10px;
+    transition-duration: .3s;
+    cursor: pointer;
+}
+
+.card:hover{
+    scale: 1.05;
+    background-color: rgb(158, 158, 158);
+}
+
+.pessoa-icon{
+    width: 450px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: -1;
+}
