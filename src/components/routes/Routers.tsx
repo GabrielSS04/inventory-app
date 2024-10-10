@@ -11,7 +11,7 @@ export const Routers = () => {
                 <Routes>
                     <Route path="/login" element={<Login/>} />
                     <Route path="/home" element={<Home/>} />
-                    <Route path="/about" element={<About/>} />
+                    <Route path="/sobre" element={<About/>} />
 
 
                     <Route path="*" element={<Navigate to='/login'/>} />
