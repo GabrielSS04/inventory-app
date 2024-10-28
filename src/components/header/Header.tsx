@@ -1,11 +1,13 @@
-import Logo from "../../logo-icon.png";
+import "./style.css"
+import React from "react";
+import logo from "../../images/logo-icon.png"
 
 
 export const Header = () => {
     return (
         <>
             <div className="header">
-        <img src={Logo} alt="" className="logo-icon" />
+        <img src={logo} alt="" className="logo-icon" />
 
         <ul className="links-ul">
           <li>

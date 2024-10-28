@@ -1,0 +1,177 @@
+/* Estilos globais */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Estilos para os containers */
+  .client-function {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+  }
+
+  .create-client-div{
+    margin-top: 400px;
+  }
+  
+  /* Formulário de criação de cliente */
+  .create-client,
+  .update-client,
+  .delete-client {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    gap: 30px;
+    width: 90%;
+    max-width: 900px;
+    margin: 10px auto;
+    background-color: blueviolet;
+    color: white;
+    border-radius: 25px;
+  }
+  
+  .create-client button,
+  .salvar-client,
+  .delete-client-btn {
+    padding: 10px;
+    border: 5px solid white;
+    border-radius: 10px;
+    font-weight: bolder;
+    transition-duration: 0.3s;
+    margin-top: 30px;
+    width: 100%;
+    max-width: 400px;
+    color: white;
+  }
+  
+  .create-client button:hover,
+  .salvar-client:hover,
+  .delete-client-btn:hover {
+    background-color: white;
+    color: black;
+  }
+  
+  .create-client div {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .create-client div input {
+    background-color: rgb(237, 214, 255);
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 600px;
+    color: blueviolet;
+  }
+  
+  .create-client div input::placeholder {
+    color: rgba(137, 43, 226, 0.489);
+  }
+  
+  /* Lista de clientes */
+  .client-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: blueviolet;
+    border: 10px solid blueviolet;
+    border-radius: 25px;
+    width: 90%;
+    max-width: 900px;
+    margin: 10px auto;
+    overflow-y: auto;
+  }
+  
+  .client-list ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    max-height: 500px;
+  }
+  
+  .client-list li {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 20px 0;
+    background-color: white;
+    min-width: 100%;
+    max-width: 400px;
+    border-radius: 10px;
+  }
+  
+  .client-list p {
+    margin: 5px 0;
+  }
+  
+  /* Inputs e selects */
+  .inputs-update-client {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .input-client,
+  .select-client-updt,
+  .select-id-delete {
+    width: 100%;
+    max-width: 600px;
+    border-radius: 5px;
+    background-color: rgb(237, 214, 255);
+    padding: 10px;
+    color: blueviolet;
+  }
+  
+  .form-delete-client {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  /* Media queries para responsividade */
+  @media (max-width: 768px) {
+    .create-client,
+    .update-client,
+    .delete-client,
+    .client-list {
+      width: 95%;
+    }
+  
+    .client-list ul {
+      flex-direction: column;
+      gap: 10px;
+    }
+  
+    .client-list li {
+      width: 100%;
+    }
+  
+    .create-client div input,
+    .input-client,
+    .select-client-updt,
+    .select-id-delete {
+      width: 100%;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .create-client button,
+    .salvar-client,
+    .delete-client-btn {
+      width: 90%;
+    }
+  }
+  

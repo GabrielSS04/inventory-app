@@ -1,0 +1,26 @@
+.form-create-pedido{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    margin: auto;
+}
+
+.create-pedido,
+.list-pedidos,
+.update-pedidos,
+.delete-pedido{
+    background-color: blueviolet;
+    padding: 20px;
+    border-radius: 20px;
+    width: 900px;
+    margin: 50px auto;
+}
+
+.pedido-card{
+    background-color: white;
+    padding: 10px;
+    margin: 20px;
+    border-radius: 10px;
+
+}

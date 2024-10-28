@@ -1,5 +1,6 @@
 import "./style.css";
-import bg from "../../bg.jpeg"
+import React from "react";
+import bg from "../../images/bg.webp"
 
 export default function Home() {
   return (

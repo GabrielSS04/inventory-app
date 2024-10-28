@@ -1,12 +1,14 @@
-import Github from "../../github-icon.png"
-import Pessoa from "../../pessoa.jpg"
+import Github from "../../images/github-icon.png"
+import Pessoa from "../../images/pessoa.jpg"
+
+import React from "react";
 
 import "./style.css"
 
 export default function About() {
   return (
     <>
-        <img src={Pessoa} alt="pessoa-icon" className="pessoa-icon"/>
+        
       
 
       <div className="container-about">
@@ -42,6 +44,8 @@ export default function About() {
                 </div>
             </div>
         </div>
+
+        <img src={Pessoa} alt="pessoa-icon" className="pessoa-icon"/>
 
       </div>
     </>

@@ -1,7 +1,28 @@
 {
-  "files": [],
-  "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
+  "compilerOptions": {
+    "target": "ESNext",                   // Definir alvo de compilação para a versão mais recente do JavaScript
+    "module": "ESNext",                   // Usar ESNext para compatibilidade com módulos ES
+    "moduleResolution": "node",           // Resolução de módulos no estilo Node.js
+    "esModuleInterop": true,              // Suporte à interoperabilidade entre ESModules e CommonJS
+    "skipLibCheck": true,                 // Ignorar checagem de tipos de bibliotecas para maior performance
+    "strict": true,                       // Ativar modo estrito, habilitando todas as verificações rigorosas
+    "outDir": "./dist",                   // Diretório de saída para os arquivos compilados
+    "rootDir": "./src",                   // Diretório raiz do código fonte
+    "resolveJsonModule": true,            // Permitir a importação de módulos JSON
+    "allowSyntheticDefaultImports": true, // Permitir imports padrão para módulos sem default export
+    "forceConsistentCasingInFileNames": true, // Forçar case-sensitive nos nomes de arquivos
+    "isolatedModules": true,              // Garante que cada arquivo será tratado como um módulo separado
+    "noEmitOnError": true,                // Impedir saída se houver erros
+    "jsx": "react",                       // Habilitar suporte a JSX (para React)
+    "lib": ["DOM", "ESNext"]              // Definir as bibliotecas padrão que o compilador TypeScript usa
+  },
+  "include": [
+    "src/**/*.ts",                        // Incluir todos os arquivos TypeScript no diretório src
+    "src/**/*.tsx",                       // Incluir todos os arquivos JSX/TSX para projetos React
+    "src/**/*.d.ts"                       // Incluir arquivos de declarações de tipos
+  ],
+  "exclude": [
+    "node_modules",                       // Excluir node_modules da compilação
+    "dist"                                // Excluir diretório de saída
   ]
 }

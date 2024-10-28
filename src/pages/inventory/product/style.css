@@ -1,0 +1,11 @@
+.create{
+    display: flex;
+    flex-direction: column;
+}
+
+.create-product-div{
+    background-color: blueviolet;
+    width: 900px;
+    margin: auto;
+    padding: 100px;
+}

@@ -1,0 +1,21 @@
+.header{
+    position: sticky;
+    top: 0;
+    left: 0;
+
+    background-image: linear-gradient(#4567FF, #6C36C7);
+    background-repeat: no-repeat;
+    height: 80px;
+    width: 100vw;
+
+    color: white;
+    font-weight: bolder;
+}
+
+.links-ul li{
+    transition-duration: .3s;
+}
+
+.links-ul li:hover{
+    scale: 1.1;
+}

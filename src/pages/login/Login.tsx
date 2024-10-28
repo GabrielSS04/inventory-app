@@ -1,13 +1,14 @@
 import "./style.css"
-import Box from "../../img.png"
-import google from "../../google-icon.png"
-import github from "../../github-icon.png"
-import gmail from "../../gmail-icon.png"
-import perfil from "../../perfil-icon.png"
-import password from "../../password-icon.png"
-import Logo from "../../logo-icon.png"
+import Box from "../../images/img.png"
+import google from "../../images/google-icon.png"
+import github from "../../images/github-icon.png"
+import gmail from "../../images/gmail-icon.png"
+import perfil from "../../images/perfil-icon.png"
+import password from "../../images/password-icon.png"
+import Logo from "../../images/logo-icon.png"
 import { useNavigate } from "react-router-dom"
 
+import React from "react"
 
 
 export default function Login(){
@@ -20,10 +21,6 @@ export default function Login(){
 
     return (
         <>
-            <div className="header">
-                <img src={Logo} alt="" className="logo-icon"/>
-                
-            </div>
             
             <section className="container-form">
                 <form>
@@ -50,23 +47,24 @@ export default function Login(){
                     <div className='login-with'>
                         <div className='google'>
                             <img src={google} alt="google" className="icons"/>
-                            <p>Contect with google</p>
+                            <p>Conect with google</p>
                         </div>
 
                         <div className='github'>
                             <img src={github} alt="github" className="icons"/>
-                            <p>Contect with github</p>
+                            <p>Conect with github</p>
                         </div>
 
                         <div className='gmail'>
                             <img src={gmail} alt="gmail" className="icons"/>
-                            <p>Contect with gmail</p>
+                            <p>Conect with gmail</p>
                         </div>
                     </div>
                 </form>
 
                 
             </section>
+
             <div className="img-box">
                 <img src={Box} alt="" />
             </div>

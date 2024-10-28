@@ -1,0 +1,51 @@
+.functions-fornecedor{
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    margin-bottom: 100px;
+}
+
+.add-fornecedor,
+.list-fornecedor,
+.update-fornecedor,
+.delete-fornecedor{
+    width: 900px;
+    margin: auto;
+    background-color: blueviolet;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.form-add-fornecedor{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-add-fornecedor input{
+    width: 600px;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.list-fornecedor-ul{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.form-update-fornecedor,
+.inputs-update-fornecedor{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.inputs-update-fornecedor{
+    margin: auto;
+    input {
+        width: 600px;
+    }
+}

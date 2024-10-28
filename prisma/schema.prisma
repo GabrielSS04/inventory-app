@@ -1,0 +1,83 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Usuario {
+  id       Int      @id @default(autoincrement())
+  nome     String
+  email    String   @unique
+  senha    String
+  pedidos  Pedido[] @relation("UsuarioPedidos")
+}
+
+model Fornecedor {
+  id        Int       @id @default(autoincrement())
+  nome      String
+  cnpj      String    @unique
+  contato   String
+  endereco  String
+  produtos  Produto[]
+}
+
+model Cliente {
+  id         Int        @id @default(autoincrement())
+  nome       String
+  cpf_cnpj   String     @unique
+  contato    String
+  endereco   String
+  pedidos    Pedido[]
+}
+
+model Produto {
+  id            Int           @id @default(autoincrement())
+  nome          String
+  descricao     String
+  preco         Float
+  quantidade    Int
+  imagem        String?
+  fornecedor    Fornecedor    @relation(fields: [fornecedorId], references: [id])
+  fornecedorId  Int
+  itemPedidos   ItemPedido[]
+  transacoes    Transacao[]
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+}
+
+model Pedido {
+  id          Int         @id @default(autoincrement())
+  data        DateTime    @default(now())
+  cliente     Cliente     @relation(fields: [clienteId], references: [id])
+  clienteId   Int
+  status      String
+  total       Float
+  usuario     Usuario     @relation("UsuarioPedidos", fields: [usuarioId], references: [id])
+  usuarioId   Int
+  itemPedidos ItemPedido[]
+  transacoes  Transacao[]
+}
+
+model ItemPedido {
+  id            Int      @id @default(autoincrement())
+  pedido        Pedido   @relation(fields: [pedidoId], references: [id])
+  pedidoId      Int
+  produto       Produto  @relation(fields: [produtoId], references: [id])
+  produtoId     Int
+  quantidade    Int
+  precoUnitario Float
+}
+
+model Transacao {
+  id         Int        @id @default(autoincrement())
+  data       DateTime   @default(now())
+  tipo       String
+  valor      Float
+  produto    Produto?   @relation(fields: [produtoId], references: [id])
+  produtoId  Int?
+  pedido     Pedido?    @relation(fields: [pedidoId], references: [id])
+  pedidoId   Int?
+}
