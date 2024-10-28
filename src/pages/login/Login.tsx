@@ -5,7 +5,6 @@ import github from "../../images/github-icon.png"
 import gmail from "../../images/gmail-icon.png"
 import perfil from "../../images/perfil-icon.png"
 import password from "../../images/password-icon.png"
-import Logo from "../../images/logo-icon.png"
 import { useNavigate } from "react-router-dom"
 
 import React from "react"
