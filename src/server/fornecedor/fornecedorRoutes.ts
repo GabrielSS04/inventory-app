@@ -14,9 +14,10 @@ router.post('/create', (req, res) => {
     }
 });
 
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
     try {
-        const fornecedores = fornecedorUseCases.readAllFornecedor();
+        const fornecedores = await fornecedorUseCases.readAllFornecedores();
+        console.log(fornecedores);
         res.status(200).json(fornecedores);
     } catch {
         res.status(500).send({ error: "error.message" });

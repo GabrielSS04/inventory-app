@@ -6,6 +6,7 @@ export class Pedido {
     private clienteId: number;
     private status: string;
     private total: number;
+    private itens: Array<{ produtoId: number, quantidade: number, precoUnitario: number }> = [];
 
     constructor(data: Date, clientId: number, status: string, total: number){
         this.id = Math.floor(Math.random() * 10000);
@@ -13,6 +14,10 @@ export class Pedido {
         this.clienteId = clientId;
         this.status = status;
         this.total = total;
+    }
+
+    adicionarItem(item: { produtoId: number, quantidade: number, precoUnitario: number }) {
+        this.itens.push(item);
     }
 
     getId(){

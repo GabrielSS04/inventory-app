@@ -2,6 +2,7 @@
     position: sticky;
     top: 0;
     left: 0;
+    z-index: 5;
 
     background-image: linear-gradient(#4567FF, #6C36C7);
     background-repeat: no-repeat;

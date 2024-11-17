@@ -1,4 +1,3 @@
-/* Estilos globais */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -9,7 +8,6 @@
     font-family: Arial, sans-serif;
   }
   
-  /* Estilos para os containers */
   .client-function {
     display: flex;
     flex-direction: column;
@@ -17,11 +15,16 @@
     padding: 20px;
   }
 
-  .create-client-div{
-    margin-top: 400px;
+  .client-div{
+    position: absolute;
+    top: 100px;
+    right: 20%;
+
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
   }
   
-  /* Formulário de criação de cliente */
   .create-client,
   .update-client,
   .delete-client {
@@ -31,7 +34,6 @@
     align-items: center;
     padding: 20px;
     gap: 30px;
-    width: 90%;
     max-width: 900px;
     margin: 10px auto;
     background-color: blueviolet;
@@ -39,9 +41,7 @@
     border-radius: 25px;
   }
   
-  .create-client button,
-  .salvar-client,
-  .delete-client-btn {
+  .button-style {
     padding: 10px;
     border: 5px solid white;
     border-radius: 10px;
@@ -52,10 +52,37 @@
     max-width: 400px;
     color: white;
   }
+
+  .client-nav{
+    background-color: blueviolet;
+    color: white;
+    padding: 20px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+
+    width: 900px;
+    margin: auto;
+    border-radius: 20px;
+
+    button{
+        border: 4px solid white;
+        border-radius: 10px;
+        width: 200px;
+        padding: 10px;
+        transition-duration: .2s;
+        font-weight: bolder;
+    }
+
+    button:hover{
+        background-color: white;
+        color: blueviolet;
+    }
+  }
   
-  .create-client button:hover,
-  .salvar-client:hover,
-  .delete-client-btn:hover {
+  .button-style {
     background-color: white;
     color: black;
   }
@@ -82,16 +109,22 @@
   /* Lista de clientes */
   .client-list {
     display: flex;
+    flex-direction: column;
+    gap: 20px;
     justify-content: center;
     align-items: center;
     padding: 20px;
     background-color: blueviolet;
     border: 10px solid blueviolet;
     border-radius: 25px;
-    width: 90%;
     max-width: 900px;
     margin: 10px auto;
     overflow-y: auto;
+  }
+
+  .list-clients-li{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
   }
   
   .client-list ul {

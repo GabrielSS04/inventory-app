@@ -1,0 +1,56 @@
+.transactions {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    text-align: center;
+    justify-content: center;
+    width: 900px;
+    margin: auto;
+    margin-bottom: 100px;
+    padding: 20px;
+    border-radius: 20px;
+    background-color: blueviolet;
+    color: white;
+    overflow: hidden;
+}
+
+.transactions-list {
+    background-color: #fff;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Define duas colunas de largura igual */
+    gap: 20px; /* Espaçamento entre as transações */
+    border-radius: 10px;
+    max-height: 400px;
+    overflow-y: auto;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.transactions-list li {
+    background-color: rgb(231, 205, 255);
+    color: blueviolet;
+    text-align: left;
+    padding: 15px;
+    border-radius: 10px;
+    width: 100%; 
+    box-sizing: border-box;
+}
+
+.filter{
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+
+    input{
+        padding: 10px;
+        border-radius: 10px;
+        color: black;
+    }
+}
+
+.transacao-functions{
+    position: absolute;
+    top: 100px;
+    right: 20%;
+}

@@ -13,7 +13,6 @@ export const UpdateFornecedor: React.FC = () => {
   const [fornecedores, setFornecedores] = useState<Fornecedor[]>([]);
   const [selectedFornecedor, setSelectedFornecedor] = useState<Fornecedor | null>(null);
 
-  // Busca todos os fornecedores
   useEffect(() => {
     const fetchFornecedores = async () => {
       try {
@@ -22,7 +21,14 @@ export const UpdateFornecedor: React.FC = () => {
           throw new Error('Erro na resposta da rede');
         }
         const data = await response.json();
-        setFornecedores(data);
+        console.log('Resposta dos fornecedores:', data);
+        
+        // Verifica se `data` é um array antes de definir o estado
+        if (Array.isArray(data)) {
+          setFornecedores(data);
+        } else {
+          console.error("A resposta não é um array:", data);
+        }
       } catch (error) {
         console.error('Erro ao buscar fornecedores:', error);
       }
@@ -31,7 +37,6 @@ export const UpdateFornecedor: React.FC = () => {
     fetchFornecedores();
   }, []);
 
-  // Seleciona o fornecedor ao escolher no dropdown
   const handleFornecedorSelect = (fornecedorId: number) => {
     const selected = fornecedores.find(fornecedor => fornecedor.id === fornecedorId);
     if (selected) {
@@ -39,7 +44,6 @@ export const UpdateFornecedor: React.FC = () => {
     }
   };
 
-  // Atualiza o fornecedor selecionado conforme o usuário altera os campos
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (selectedFornecedor) {
       setSelectedFornecedor({
@@ -49,7 +53,6 @@ export const UpdateFornecedor: React.FC = () => {
     }
   };
 
-  // Envia a atualização do fornecedor para o backend
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
@@ -76,7 +79,7 @@ export const UpdateFornecedor: React.FC = () => {
 
   return (
     <div className="update-fornecedor">
-      <form onSubmit={handleSubmit} className='form-update-fornecedor'>
+      <form onSubmit={handleSubmit} className="form-update-fornecedor">
         <h1>Atualizar Fornecedor</h1>
 
         <label htmlFor="fornecedor-id">Selecione o Fornecedor (ID):</label>
@@ -85,7 +88,7 @@ export const UpdateFornecedor: React.FC = () => {
           onChange={(e) => handleFornecedorSelect(Number(e.target.value))}
         >
           <option value="">Selecione um fornecedor</option>
-          {fornecedores.map((fornecedor) => (
+          {Array.isArray(fornecedores) && fornecedores.map((fornecedor) => (
             <option key={fornecedor.id} value={fornecedor.id}>
               Nome: {fornecedor.nome} - ID: {fornecedor.id}
             </option>
@@ -94,38 +97,46 @@ export const UpdateFornecedor: React.FC = () => {
 
         {selectedFornecedor && (
           <div className="inputs-update-fornecedor">
-            <label htmlFor="nome">Nome:</label>
-            <input
-              type="text"
-              id="nome"
-              name="nome"
-              value={selectedFornecedor.nome}
-              onChange={handleInputChange}
-            />
-            <label htmlFor="cnpj">CNPJ:</label>
-            <input
-              type="text"
-              id="cnpj"
-              name="cnpj"
-              value={selectedFornecedor.cnpj}
-              onChange={handleInputChange}
-            />
-            <label htmlFor="contato">Contato:</label>
-            <input
-              type="text"
-              id="contato"
-              name="contato"
-              value={selectedFornecedor.contato}
-              onChange={handleInputChange}
-            />
-            <label htmlFor="endereco">Endereço:</label>
-            <input
-              type="text"
-              id="endereco"
-              name="endereco"
-              value={selectedFornecedor.endereco}
-              onChange={handleInputChange}
-            />
+            <div className="input-update-fornecedor">
+              <label htmlFor="nome">Nome:</label>
+              <input
+                type="text"
+                id="nome"
+                name="nome"
+                value={selectedFornecedor.nome}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="input-update-fornecedor">
+              <label htmlFor="cnpj">CNPJ:</label>
+              <input
+                type="text"
+                id="cnpj"
+                name="cnpj"
+                value={selectedFornecedor.cnpj}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="input-update-fornecedor">
+              <label htmlFor="contato">Contato:</label>
+              <input
+                type="text"
+                id="contato"
+                name="contato"
+                value={selectedFornecedor.contato}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="input-update-fornecedor">
+              <label htmlFor="endereco">Endereço:</label>
+              <input
+                type="text"
+                id="endereco"
+                name="endereco"
+                value={selectedFornecedor.endereco}
+                onChange={handleInputChange}
+              />
+            </div>
             <button type="submit">Salvar</button>
           </div>
         )}

@@ -64,7 +64,7 @@ export const CreateClient = () => {
 
                 <div>
                     <label htmlFor="cpf_cnpj">CPF/CNPJ do Cliente:</label>
-                    <input type="text" placeholder="Cpf ou Cnpj" id="cpf_cnpj" onChange={(e) => setCpfCnpj(e.target.value)} />
+                    <input type="text" placeholder="Cpf ou Cnpj" id="cpf_cnpj" onChange={(e) => setCpfCnpj(e.target.value)} min={10000000000}/>
                 </div>
 
                 <div>
@@ -77,7 +77,7 @@ export const CreateClient = () => {
                     <input type="text" placeholder="Endereço" id="endereco" onChange={(e) => setEndereco(e.target.value)} />
                 </div>
 
-                <button onClick={CriarCliente}>Criar Cliente</button>
+                <button className="button-style" onClick={CriarCliente}>Criar Cliente</button>
             </form>
         </div>
     );

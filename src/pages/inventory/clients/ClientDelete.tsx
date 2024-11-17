@@ -82,7 +82,7 @@ export const ClientDelete: React.FC = () => {
           ))}
         </select>
 
-        <button className='delete-client-btn' type="submit">Deletar</button>
+        <button className='button-style' type="submit">Deletar</button>
       </form>
     </div>
   );

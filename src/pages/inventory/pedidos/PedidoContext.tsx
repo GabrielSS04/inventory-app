@@ -1,11 +1,18 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
+interface ItemPedido {
+  produtoId: number;
+  quantidade: number;
+  precoUnitario: number;
+}
+
 interface Pedido {
   id: number;
   data: Date;
   clientId: number;
   status: string;
   total: number;
+  itens: ItemPedido[]; // Inclui os itens do pedido
 }
 
 interface PedidoContextType {
@@ -28,6 +35,7 @@ export const PedidoProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       const pedidosComData = data.map((pedido: Pedido) => ({
         ...pedido,
         data: new Date(pedido.data),
+        itens: pedido.itens || [] // Carrega os itens do pedido
       }));
       setPedidos(pedidosComData);
     } catch (error) {

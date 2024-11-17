@@ -12,7 +12,11 @@ export default function Inventory() {
   return (
     <>
       <Sidebars onSelect={setCurrentComponent} />
-      <div style={{ marginLeft: "20px" }}>{currentComponent}</div>
+      <div style={{ marginLeft: "20px" }}>
+        {currentComponent}
+        
+
+      </div>
     </>
   );
 }

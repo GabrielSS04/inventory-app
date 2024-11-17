@@ -5,14 +5,16 @@ export class Product {
     private descricao: string;
     private preco: number;
     private quantidade: number;
+    private fornecedorId: number;
     private imagem: string;
 
-    constructor(nome:string , descricao:string, preco:number, quantidade:number, imagem:string){
+    constructor(nome:string , descricao:string, preco:number, quantidade:number, fornecedorId: number, imagem:string){
         this.id = Math.floor(Math.random() * 10000)
         this.nome = nome;
         this.descricao = descricao;
         this.preco = preco;
         this.quantidade = quantidade;
+        this.fornecedorId = fornecedorId;
         this.imagem = imagem;
     }
 
@@ -54,6 +56,14 @@ export class Product {
 
     setQuantidade(quantidade: number){
         this.quantidade = quantidade;
+    }
+
+    getFornecedorId(){
+        return this.fornecedorId;
+    }
+
+    setFornecedorId(fornecedorId: number){
+        this.fornecedorId = fornecedorId;
     }
 
     getImagem(){

@@ -6,7 +6,6 @@ import "./style.css"
 import { Fornecedores } from '../../pages/inventory/fornecedor/Fornecedores';
 import { Pedidos } from '../../pages/inventory/pedidos/Pedidos';
 import { Transacoes } from '../../pages/inventory/transacoes/Transacoes';
-import { Autenticacao } from '../../pages/inventory/autenticacao/Autenticacao';
 
 interface SidebarProps {
   onSelect: (component: React.ReactNode) => void;
@@ -20,7 +19,6 @@ export const Sidebars: React.FC<SidebarProps> = ({ onSelect }) => {
       <button onClick={() => onSelect(<Fornecedores/>)}>Fornecedores</button>
       <button onClick={() => onSelect(<Pedidos/>)}>Pedidos</button>
       <button onClick={() => onSelect(<Transacoes/>)}>Transaçoes</button>
-      <button onClick={() => onSelect(<Autenticacao/>)}>Autenticaçao</button>
     </div>
   );
 };

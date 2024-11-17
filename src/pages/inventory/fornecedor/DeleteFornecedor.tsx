@@ -69,7 +69,7 @@ export const DeleteFornecedor: React.FC = () => {
           </option>
         ))}
       </select>
-      <button onClick={handleDelete} disabled={selectedFornecedorId === null}>
+      <button className='button-style' onClick={handleDelete} disabled={selectedFornecedorId === null}>
         Deletar Fornecedor
       </button>
     </div>

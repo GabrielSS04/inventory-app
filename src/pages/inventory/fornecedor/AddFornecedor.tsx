@@ -23,35 +23,43 @@ const AddFornecedor = () => {
 
   return (
     <form className='form-add-fornecedor' onSubmit={handleSubmit}>
-      <input
-        type="text"
-        value={nome}
-        onChange={(e) => setNome(e.target.value)}
-        placeholder="Nome"
-        required
-      />
-      <input
-        type="text"
-        value={cnpj}
-        onChange={(e) => setCnpj(e.target.value)}
-        placeholder="CNPJ"
-        required
-      />
-      <input
-        type="text"
-        value={contato}
-        onChange={(e) => setContato(e.target.value)}
-        placeholder="Contato"
-        required
-      />
-      <input
-        type="text"
-        value={endereco}
-        onChange={(e) => setEndereco(e.target.value)}
-        placeholder="Endereço"
-        required
-      />
-      <button type="submit">Adicionar Fornecedor</button>
+      <div className="input-create-fornecedor">
+        <label htmlFor="nome">Nome:</label>
+        <input
+          type="text"
+          value={nome}
+          onChange={(e) => setNome(e.target.value)}
+          required
+        />
+      </div>
+      <div className="input-create-fornecedor">
+        <label htmlFor="cnpj">CNPJ:</label>
+        <input
+          type="text"
+          value={cnpj}
+          onChange={(e) => setCnpj(e.target.value)}
+          required
+        />
+      </div>
+      <div className="input-create-fornecedor">
+        <label htmlFor="contato">Contato:</label>
+        <input
+          type="text"
+          value={contato}
+          onChange={(e) => setContato(e.target.value)}
+          required
+        />
+      </div>
+      <div className="input-create-fornecedor">
+        <label htmlFor="endereco">Endereço:</label>
+        <input
+          type="text"
+          value={endereco}
+          onChange={(e) => setEndereco(e.target.value)}
+          required
+        />
+      </div>
+      <button className='button-style' type="submit">Adicionar Fornecedor</button>
     </form>
   );
 };

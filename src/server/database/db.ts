@@ -45,6 +45,76 @@ export const initializeDatabase = () => {
             }
         });
 
+        db.run(`
+            CREATE TABLE IF NOT EXISTS fornecedores (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                nome TEXT NOT NULL,
+                cnpj TEXT NOT NULL,
+                contato TEXT NOT NULL,
+                endereco TEXT NOT NULL
+            )
+        `, (err) => {
+            if (err) {
+                console.error('Erro ao criar a tabela fornecedores:', err.message);
+            } else {
+                console.log('Tabela de fornecedores verificada/criada.');
+            }
+        });
+
+        db.run(`
+            CREATE TABLE IF NOT EXISTS produtos (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                nome TEXT NOT NULL,
+                descricao TEXT NOT NULL,
+                preco INTEGER NOT NULL,
+                quantidade INTEGER NOT NULL,
+                fornecedorId INTEGER NOT NULL,
+                imagem TEXT NOT NULL
+            )
+        `, (err) => {
+            if (err) {
+                console.error('Erro ao criar a tabela produtos:', err.message);
+            } else {
+                console.log('Tabela de produtos verificada/criada.');
+            }
+        });
+
+        db.run(`
+            CREATE TABLE IF NOT EXISTS itemPedido (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                pedidoId INTEGER NOT NULL,
+                produtoId INTEGER NOT NULL,
+                quantidade INTEGER NOT NULL,
+                precoUnitario REAL NOT NULL,
+                FOREIGN KEY(pedidoId) REFERENCES pedidos(id) ON DELETE CASCADE,
+                FOREIGN KEY(produtoId) REFERENCES produtos(id) ON DELETE CASCADE
+            )
+        `, (err) => {
+            if (err) {
+                console.error('Erro ao criar a tabela itemPedido:', err.message);
+            } else {
+                console.log('Tabela de itemPedido verificada/criada.');
+            }
+        });
+
+        db.run(`
+            CREATE TABLE IF NOT EXISTS transacao (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                data DATE NOT NULL,
+                tipo TEXT NOT NULL,
+                valor INTEGER NOT NULL,
+                pedidoId INTEGER NOT NULL,
+                produtoId INTEGER NOT NULL
+            )
+        `, (err) => {
+            if (err) {
+                console.error('Erro ao criar a tabela transacao:', err.message);
+            } else {
+                console.log('Tabela de transacao verificada/criada.');
+            }
+        });
+        
+
     });
 };
 

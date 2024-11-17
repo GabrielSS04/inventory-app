@@ -1,11 +1,18 @@
 import React, { useEffect, useState } from 'react';
 
+interface ItemPedido {
+  produtoId: number;
+  quantidade: number;
+  precoUnitario: number;
+}
+
 interface Pedido {
   id: number;
-  data: Date;
+  data: string;
   clienteId: number;
   status: string;
   total: number;
+  itens: ItemPedido[];
 }
 
 export const PedidoUpdate: React.FC = () => {
@@ -30,9 +37,16 @@ export const PedidoUpdate: React.FC = () => {
   }, []);
 
   const handlePedidoSelect = (pedidoId: number) => {
-    const selected = pedidos.find(pedido => pedido.id === pedidoId);
+    const selected = pedidos.find((pedido) => pedido.id === pedidoId);
     if (selected) {
       setSelectedPedido(selected);
+    }
+  };
+
+  const excluirItem = (index: number) => {
+    if (selectedPedido) {
+      const novosItens = selectedPedido.itens.filter((_, i) => i !== index);
+      setSelectedPedido({ ...selectedPedido, itens: novosItens });
     }
   };
 
@@ -50,23 +64,34 @@ export const PedidoUpdate: React.FC = () => {
 
     if (selectedPedido) {
       try {
-        const response = await fetch(`http://localhost:3000/api/pedido/update/${selectedPedido.id}`, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            ...selectedPedido,
-            data: new Date(selectedPedido.data).toISOString(), // Converte para string compatível
-          }),
-        });
+        const response = await fetch(
+          `http://localhost:3000/api/pedido/update/${selectedPedido.id}`,
+          {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              ...selectedPedido,
+              data: new Date(selectedPedido.data).toISOString(), // Converte para string compatível
+            }),
+          }
+        );
 
         if (!response.ok) {
           throw new Error('Erro ao atualizar o pedido');
         }
 
-        const data = await response.json();
-        alert('Pedido atualizado com sucesso! ' + data);
+        const updatedPedido = await response.json();
+        
+        // Atualiza a lista de pedidos após a alteração
+        setPedidos((prevPedidos) =>
+          prevPedidos.map((pedido) =>
+            pedido.id === updatedPedido.id ? updatedPedido : pedido
+          )
+        );
+
+        alert('Pedido atualizado com sucesso!');
       } catch (error) {
         console.error('Erro ao atualizar o pedido:', error);
       }
@@ -76,12 +101,13 @@ export const PedidoUpdate: React.FC = () => {
   return (
     <div className="update-pedido">
       <form onSubmit={handleSubmit}>
-        <h1>Update Pedido</h1>
+        <h1>Atualizar Pedido</h1>
 
         <label htmlFor="pedido-id">Selecione o Pedido (ID):</label>
         <select
           id="pedido-id"
           onChange={(e) => handlePedidoSelect(Number(e.target.value))}
+          value={selectedPedido ? selectedPedido.id : ''}
         >
           <option value="">Selecione um pedido</option>
           {pedidos.map((pedido) => (
@@ -93,43 +119,63 @@ export const PedidoUpdate: React.FC = () => {
 
         {selectedPedido && (
           <div className="inputs-update-pedido">
-            <label htmlFor="data">Data:</label>
-            <input
-              type="date"
-              id="data"
-              name="data"
-              value={new Date(selectedPedido.data).toISOString().substring(0, 10)}
-              onChange={handleInputChange}
-            />
+            <div className="input-update-pedido">
+              <label htmlFor="data">Data:</label>
+              <input
+                type="date"
+                id="data"
+                name="data"
+                value={new Date(selectedPedido.data).toISOString().substring(0, 10)}
+                onChange={handleInputChange}
+              />
+            </div>
 
-            <label htmlFor="clientId">Cliente ID:</label>
-            <input
-              type="number"
-              id="clientId"
-              name="clientId"
-              value={selectedPedido.clienteId}
-              onChange={handleInputChange}
-            />
+            <div className="input-update-pedido">
+              <label htmlFor="clienteId">Cliente ID:</label>
+              <input
+                type="number"
+                id="clienteId"
+                name="clienteId"
+                value={selectedPedido.clienteId}
+                onChange={handleInputChange}
+              />
+            </div>
 
-            <label htmlFor="status">Status:</label>
-            <input
-              type="text"
-              id="status"
-              name="status"
-              value={selectedPedido.status}
-              onChange={handleInputChange}
-            />
+            <div className="input-update-pedido">
+              <label htmlFor="status">Status:</label>
+              <input
+                type="text"
+                id="status"
+                name="status"
+                value={selectedPedido.status}
+                onChange={handleInputChange}
+              />
+            </div>
 
-            <label htmlFor="total">Total:</label>
-            <input
-              type="number"
-              id="total"
-              name="total"
-              value={selectedPedido.total}
-              onChange={handleInputChange}
-            />
+            <div className="input-update-pedido">
+              <label htmlFor="total">Total:</label>
+              <input
+                type="number"
+                id="total"
+                name="total"
+                value={selectedPedido.total}
+                onChange={handleInputChange}
+              />
+            </div>
 
-            <button type="submit">Salvar</button>
+            <h3>Itens do Pedido</h3>
+            <ul>
+              {selectedPedido.itens.map((item, index) => (
+                <li key={index}>
+                  Produto ID: {item.produtoId}, Quantidade: {item.quantidade}, Preço Unitário: {item.precoUnitario}{' '}
+                  <button type="button" onClick={() => excluirItem(index)}>
+                    Excluir Item
+                  </button>
+                </li>
+              ))}
+            </ul>
+
+            <button type="submit">Atualizar Pedido</button>
           </div>
         )}
       </form>

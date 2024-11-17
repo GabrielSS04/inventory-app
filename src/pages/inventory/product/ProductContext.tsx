@@ -1,65 +1,102 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useState, useContext, useEffect, ReactNode } from 'react';
 
-// Definindo o tipo do produto
-type Product = {
+// Defina a interface para o produto, incluindo o fornecedorId
+interface Product {
   id: number;
-  name: string;
-  price: number;
-};
+  nome: string;
+  descricao: string;
+  preco: number;
+  quantidade: number;
+  imagem: string;
+  fornecedorId: number; // Novo campo para o fornecedor
+}
 
-// Tipos para o contexto
-type ProductContextType = {
+// Defina a interface para o contexto
+interface ProductContextType {
   products: Product[];
-  addProduct: (product: Product) => void;
-  updateProduct: (updatedProduct: Product) => void;
-  deleteProduct: (id: number) => void;
-};
+  fetchProducts: () => void;
+  addProduct: (product: FormData) => Promise<void>;
+  updateProduct: (id: number, updatedProductData: FormData) => Promise<void>;
+  deleteProduct: (id: number) => Promise<void>;
+}
 
-// Criando o contexto com valor inicial vazio
+// Cria o contexto com valor inicial undefined
 const ProductContext = createContext<ProductContextType | undefined>(undefined);
 
-// Criando o Provider para encapsular os componentes
 export const ProductProvider = ({ children }: { children: ReactNode }) => {
   const [products, setProducts] = useState<Product[]>([]);
 
-  // Funções para manipular os produtos
-  const addProduct = async (product: Omit<Product, 'id'>) => {
+  // Função para buscar todos os produtos
+  const fetchProducts = async () => {
     try {
-      const response = await fetch('http://localhost:4000/api/products', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(product),
-      });
-  
-      if (!response.ok) {
-        throw new Error('Erro ao criar o produto');
-      }
-  
-      const newProduct = await response.json();
-      setProducts([...products, newProduct]); // Adiciona o novo produto à lista de produtos no estado
+      const response = await fetch('http://localhost:3000/api/products');
+      const data = await response.json();
+      setProducts(data);
     } catch (error) {
-      console.error(error);
+      console.error('Erro ao buscar produtos:', error);
     }
   };
 
-  const updateProduct = (updatedProduct: Product) => {
-    setProducts(products.map((product) => (product.id === updatedProduct.id ? updatedProduct : product)));
+  // Função para adicionar um produto, incluindo fornecedorId
+  const addProduct = async (productData: FormData) => {
+    try {
+      const response = await fetch('http://localhost:3000/api/products/create', {
+        method: 'POST',
+        body: productData, // Enviar FormData com dados e imagem
+      });
+      if (response.ok) {
+        fetchProducts();
+      }
+    } catch (error) {
+      console.error('Erro ao adicionar produto:', error);
+    }
   };
 
-  const deleteProduct = (id: number) => setProducts(products.filter((product) => product.id !== id));
+  // Função para atualizar um produto (agora aceita FormData para permitir atualização de imagem)
+  const updateProduct = async (id: number, updatedProductData: FormData) => {
+    try {
+      const response = await fetch(`http://localhost:3000/api/products/update/${id}`, {
+        method: 'PUT',
+        body: updatedProductData, // Enviar dados com FormData
+      });
+      if (response.ok) {
+        fetchProducts();
+      }
+    } catch (error) {
+      console.error('Erro ao atualizar produto:', error);
+    }
+  };
+
+  // Função para deletar um produto
+  const deleteProduct = async (id: number) => {
+    try {
+      const response = await fetch(`http://localhost:3000/api/products/delete/${id}`, {
+        method: 'DELETE',
+      });
+      if (response.ok) {
+        fetchProducts();
+      }
+    } catch (error) {
+      console.error('Erro ao deletar produto:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
 
   return (
-    <ProductContext.Provider value={{ products, addProduct, updateProduct, deleteProduct }}>
+    <ProductContext.Provider value={{ products, fetchProducts, addProduct, updateProduct, deleteProduct }}>
       {children}
     </ProductContext.Provider>
   );
 };
 
-// Hook personalizado para usar o contexto
+// Hook para usar o ProductContext
 export const useProductContext = () => {
   const context = useContext(ProductContext);
   if (!context) {
-    throw new Error('useProductContext deve ser usado dentro de um ProductProvider');
+    throw new Error('useProductContext deve ser usado dentro de ProductProvider');
   }
   return context;
 };
