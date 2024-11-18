@@ -124,6 +124,7 @@ export const PedidoForm: React.FC<PedidoFormProps> = ({ onPedidoCreated }) => {
         <label>Quantidade: </label>
         <input
           type="number"
+          min={1}
           value={quantidade}
           onChange={(e) => setQuantidade(Number(e.target.value))}
         />
@@ -132,6 +133,8 @@ export const PedidoForm: React.FC<PedidoFormProps> = ({ onPedidoCreated }) => {
         <label>Preço Unitário: </label>
         <input
           type="number"
+          min={0.01}
+          step={0.01}
           value={precoUnitario}
           onChange={(e) => setPrecoUnitario(Number(e.target.value))}
         />

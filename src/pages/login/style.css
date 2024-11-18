@@ -60,20 +60,22 @@ body{
 
 }
 
-.username, .password{
+.username, .password, .email{
     display: flex;
     gap: 10px;
 }
 
 .username input,
-.password input{
+.password input,
+.email input{
     width: 360px;
-    background-color: transparent;
-    padding: 5px;
-    border-bottom: 2px solid #2b2828;
+    background-color: #fff;
+    padding: 10px;
+    border: 10px;
 }
 
-.button-login{
+.button-login,
+.button-register{
     padding: 20px;
     border-radius: 10px;
     border: 3px solid blueviolet;
@@ -88,7 +90,8 @@ body{
     transition-duration: .3s;
 }
 
-.button-login:hover{
+.button-login:hover,
+.button-register:hover{
     border: none;
     background-color: blueviolet;
     color: white;
@@ -128,4 +131,15 @@ body{
     width: 30px;
     height: 30px;
     scale: 0.9;
+}
+
+.button-gotoregister,
+.button-gotologin{
+    background-color: #8EC3FF;
+    color: black;
+    font-size: 14pt;
+    border: none;
+    a{
+        text-decoration: none;
+    }
 }

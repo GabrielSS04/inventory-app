@@ -113,6 +113,21 @@ export const initializeDatabase = () => {
                 console.log('Tabela de transacao verificada/criada.');
             }
         });
+
+        db.run(`
+            CREATE TABLE IF NOT EXISTS user (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                username TEXT NOT NULL,
+                email TEXT NOT NULL,
+                password TEXT NOT NULL
+            )
+        `, (err) => {
+            if (err) {
+                console.error('Erro ao criar a tabela user:', err.message);
+            } else {
+                console.log('Tabela de user verificada/criada.');
+            }
+        });
         
 
     });

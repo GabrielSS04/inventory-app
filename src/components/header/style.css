@@ -11,12 +11,48 @@
 
     color: white;
     font-weight: bolder;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30%;
+}
+
+.logo-ico{
+    scale: .6;
+}
+
+.links-ul{
+    list-style: none;
 }
 
 .links-ul li{
     transition-duration: .3s;
+
+    a{
+        color: white;
+        text-decoration: none;
+    }
 }
 
 .links-ul li:hover{
     scale: 1.1;
 }
+
+.logout-button {
+    background-color: #6C36C7;
+    color: white;
+    border: 5px solid #ecacfc;
+    border-radius: 5px;
+    padding: 8px 12px;
+    font-size: 14px;
+    font-weight: bolder;
+    cursor: pointer;
+    transition-duration: .2s;
+}
+  
+.logout-button:hover {
+    background-color: #ecacfc; /* Tom mais escuro no hover */
+    color: #6C36C7;
+}
+  

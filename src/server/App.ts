@@ -6,6 +6,7 @@ import clientRoutes from './clientes/clientRoutes';
 import fornecedorRoutes from './fornecedor/fornecedorRoutes';
 import pedidoRoutes from './pedidos/pedidoRoutes';
 import transacaoRoutes from "./transacao/transacaoRoutes";
+import userRoutes from "./users/UserRoutes";
 import { initializeDatabase } from './database/db';
 
 const app = express();
@@ -33,6 +34,7 @@ app.use('/api/client', clientRoutes);
 app.use('/api/fornecedor', fornecedorRoutes); 
 app.use('/api/pedido', pedidoRoutes);
 app.use('/api/transacao', transacaoRoutes);
+app.use('/api/user', userRoutes);
 
 // Iniciando o servidor
 app.listen(PORT, () => {

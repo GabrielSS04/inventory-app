@@ -86,11 +86,11 @@ const CreateProduct: React.FC = () => {
         </div>
         <div className='inputs-create-product'>
           <label>Preço:</label>
-          <input type="number" value={preco} onChange={(e) => setPreco(Number(e.target.value))} required />
+          <input type="number" min={0.01} step={0.01} value={preco} onChange={(e) => setPreco(Number(e.target.value))} required />
         </div>
         <div className='inputs-create-product'>
           <label>Quantidade:</label>
-          <input type="number" value={quantidade} onChange={(e) => setQuantidade(Number(e.target.value))} required />
+          <input type="number" min={1} value={quantidade} onChange={(e) => setQuantidade(Number(e.target.value))} required />
         </div>
         <div className='inputs-create-product'>
           <label>Fornecedor:</label>

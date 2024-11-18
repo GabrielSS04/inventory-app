@@ -1,72 +1,88 @@
-import "./style.css"
-import Box from "../../images/img.png"
-import google from "../../images/google-icon.png"
-import github from "../../images/github-icon.png"
-import gmail from "../../images/gmail-icon.png"
-import perfil from "../../images/perfil-icon.png"
-import password from "../../images/password-icon.png"
-import { useNavigate } from "react-router-dom"
+import React, { useState } from "react";
+import { useAuth } from "./AuthContext";
+import { useNavigate } from "react-router-dom";
+import "./style.css";
+import Box from "../../images/img.png";
+import perfil from "../../images/perfil-icon.png";
+import passwordicon from "../../images/password-icon.png";
 
-import React from "react"
+export default function Login() {
+  const { login } = useAuth();
+  const navigate = useNavigate();
 
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
-export default function Login(){
-
-    const navigate = useNavigate();
-
-    function toHome(){
-        navigate("/home")
+  // Lida com login e mostra erro caso falhe
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const success = await login(username, password);
+    if (!success) {
+      setErrorMessage("Credenciais inválidas. Por favor, tente novamente.");
     }
+  };
 
-    return (
-        <>
-            
-            <section className="container-form">
-                <form>
-                    <p className="title">Login</p>
+  // Navega para a tela de registro
+  const handleNavigateToRegister = () => {
+    navigate("/register");
+  };
 
-                    <div className="inputs">
-                        <div className="username">
-                            <label htmlFor="user">
-                                <img src={perfil} alt="image" />
-                            </label>
-                            <input type="text" name="user" id="user" placeholder='Username'/>
-                        </div>
-                        <div className="password">
-                            <label htmlFor="pass">
-                                <img src={password} alt="image" />
-                            </label>
-                            <input type="password" name='pass' id='pass' placeholder='Password' />
-                        </div>
-                    </div>
+  return (
+    <>
+      <section className="container-form">
+        <form onSubmit={handleLogin}>
+          <p className="title">Login</p>
 
-                    <button className="button-login" onClick={toHome}>Login</button>
-
-
-                    <div className='login-with'>
-                        <div className='google'>
-                            <img src={google} alt="google" className="icons"/>
-                            <p>Conect with google</p>
-                        </div>
-
-                        <div className='github'>
-                            <img src={github} alt="github" className="icons"/>
-                            <p>Conect with github</p>
-                        </div>
-
-                        <div className='gmail'>
-                            <img src={gmail} alt="gmail" className="icons"/>
-                            <p>Conect with gmail</p>
-                        </div>
-                    </div>
-                </form>
-
-                
-            </section>
-
-            <div className="img-box">
-                <img src={Box} alt="" />
+          <div className="inputs">
+            <div className="username">
+              <label htmlFor="user">
+                <img src={perfil} alt="Ícone de perfil" />
+              </label>
+              <input
+                type="text"
+                id="user"
+                placeholder="Username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                required
+                aria-label="Username"
+              />
             </div>
-        </>
-    );
+            <div className="password">
+              <label htmlFor="pass">
+                <img src={passwordicon} alt="Ícone de senha" />
+              </label>
+              <input
+                type="password"
+                id="pass"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                aria-label="Password"
+              />
+            </div>
+          </div>
+
+          {errorMessage && <p className="error-message">{errorMessage}</p>}
+
+          <button type="submit" className="button-login" aria-label="Login">
+            Login
+          </button>
+          <button
+            type="button"
+            className="button-gotoregister"
+            onClick={handleNavigateToRegister}
+          >
+            Não possuo uma conta?
+          </button>
+        </form>
+      </section>
+
+      <div className="img-box">
+        <img src={Box} alt="Imagem ilustrativa" />
+      </div>
+    </>
+  );
 }
